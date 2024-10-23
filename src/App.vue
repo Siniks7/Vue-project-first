@@ -1,12 +1,12 @@
 <template>
   <div class="wrapper">
-      <CurrentHeader></CurrentHeader>
+      <CurrentHeader />
     <div class="wrapper-content">
       <div class="container">
         <p>Hello World</p>
       </div>
     </div>
-    <CurrentFooter></CurrentFooter>
+    <CurrentFooter />
   </div>
 </template>
 
