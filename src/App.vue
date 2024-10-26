@@ -3,7 +3,7 @@
       <CurrentHeader />
     <div class="wrapper-content">
       <div class="container">
-        <p>Hello World</p>
+        <router-view />
       </div>
     </div>
     <CurrentFooter />
@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import CurrentHeader from '@/components/CurrentHeader.vue';
 import CurrentFooter from '@/components/CurrentFooter.vue';
+import CurrentHeader from '@/components/CurrentHeader.vue';
 export default {
   name: 'App',
   components: 

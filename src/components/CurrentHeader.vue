@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import {app, links} from "@/_config";
+import { app, links } from "@/_config";
 export default {
   data() {
     return {
