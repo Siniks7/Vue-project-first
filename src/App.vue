@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-      <CurrentHeader />
+    <CurrentHeader />
     <div class="wrapper-content">
       <div class="container">
         <router-view />
@@ -11,14 +11,12 @@
 </template>
 
 <script>
-import CurrentFooter from '@/components/CurrentFooter.vue';
-import CurrentHeader from '@/components/CurrentHeader.vue';
+import CurrentFooter from '@/components/CurrentFooter.vue'
+import CurrentHeader from '@/components/CurrentHeader.vue'
 export default {
   name: 'App',
-  components: 
-    {CurrentHeader, CurrentFooter}
-};
+  components: { CurrentHeader, CurrentFooter }
+}
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
