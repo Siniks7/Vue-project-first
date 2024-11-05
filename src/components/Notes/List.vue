@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="note-list">
     <div class="note-item" v-for="(note, index) in items" :key="index">
