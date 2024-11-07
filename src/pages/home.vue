@@ -29,8 +29,11 @@ export default {
   },
   methods: {
     handleSubmit(note) {
-      this.notes.push(note)
-      console.log(note)
+      const newObject = {
+        title: note,
+        tags: []
+      }
+      this.notes.push(newObject)
     },
     deleteNote(index) {
       this.notes.splice(index, 1)
