@@ -19,15 +19,28 @@ export default {
         {
           title: 'Finish course',
           tags: ['work', 'home']
-        },
-        {
-          title: 'Hello',
-          tags: []
         }
       ]
     }
   },
+  mounted() {
+    this.getNotes()
+  },
+  watch: {
+    notes: {
+      handler(updatedList) {
+        localStorage.setItem('notes', JSON.stringify(updatedList))
+      },
+      deep: true
+    }
+  },
   methods: {
+    getNotes() {
+      const localNotes = localStorage.getItem('notes')
+      if (localNotes) {
+        this.notes = JSON.parse(localNotes)
+      }
+    },
     handleSubmit(note) {
       const newObject = {
         title: note,
