@@ -1,8 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <p>vuex</p>
+  <p>{{ getUsers }}</p>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    getUsers() {
+      return this.$store.getters.getUsers
+    }
+  }
+}
 </script>
