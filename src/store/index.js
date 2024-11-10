@@ -11,6 +11,9 @@ export const store = createStore({
   getters: {
     getUsers(state) {
       return state.users
+    },
+    getUsersLength(state, getters) {
+      return `Количество пользователей: ${getters.getUsers.length}`
     }
   }
 })
