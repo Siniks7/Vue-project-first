@@ -10,10 +10,14 @@ export const store = createStore({
   },
   getters: {
     getUsers(state) {
+      return state.users.filter(user => !user.admin)
+    },
+    getAllUsers(state) {
       return state.users
     },
+    getUserbyId: state => id => state.users.find(user => user.id === id),
     getUsersLength(state, getters) {
-      return `Количество пользователей: ${getters.getUsers.length}`
+      return `Количество пользователей: ${getters.getAllUsers.length}`
     }
   }
 })

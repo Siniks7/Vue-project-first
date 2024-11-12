@@ -8,13 +8,27 @@
     </li>
   </ul>
   <div>{{ getUsersLength }}</div>
+  <br />
+  <br />
+  <input type="number" v-model="userId" />
+  {{ getUser }}
+  <br />
+  <br />
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      userId: 3
+    }
+  },
   computed: {
     getUsers() {
       return this.$store.getters.getUsers
+    },
+    getUser() {
+      return this.$store.getters.getUserbyId(this.userId) || 'user not found'
     },
     getUsersLength() {
       return this.$store.getters.getUsersLength
