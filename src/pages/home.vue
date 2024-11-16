@@ -13,14 +13,6 @@ export default {
   mounted() {
     this.getNotes()
   },
-  watch: {
-    notes: {
-      handler(updatedList) {
-        localStorage.setItem('notes', JSON.stringify(updatedList))
-      },
-      deep: true
-    }
-  },
   methods: {
     getNotes() {
       const localNotes = localStorage.getItem('notes')
@@ -31,7 +23,9 @@ export default {
   },
   computed: {
     getNotesState() {
-      return this.$store.getters.getNotes
+      const state = this.$store.getters.getNotes
+      localStorage.setItem('notes', JSON.stringify(state))
+      return state
     }
   }
 }

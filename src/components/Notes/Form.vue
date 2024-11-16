@@ -26,7 +26,6 @@ export default {
         title: this.value,
         tags: []
       }
-      console.log(newNote)
       this.$store.dispatch('addNote', newNote)
       this.value = ''
     },

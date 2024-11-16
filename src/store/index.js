@@ -1,17 +1,19 @@
 import { createStore } from 'vuex'
-
+const localNotes = localStorage.getItem('notes')
 export const store = createStore({
   state: {
-    notes: [
-      {
-        title: 'Learn Vue 3',
-        tags: ['work']
-      },
-      {
-        title: 'Finish course',
-        tags: ['work', 'home']
-      }
-    ]
+    notes: localNotes
+      ? JSON.parse(localNotes)
+      : [
+          {
+            title: 'Learn Vue 3',
+            tags: ['work']
+          },
+          {
+            title: 'Finish course',
+            tags: ['work', 'home']
+          }
+        ]
   },
   actions: {
     setNotes(context, notes) {
