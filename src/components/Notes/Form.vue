@@ -21,7 +21,13 @@ export default {
   components: { TagsList },
   methods: {
     onSubmit() {
-      this.$emit('onSubmit', this.value)
+      // this.$emit('onSubmit', this.value)
+      const newNote = {
+        title: this.value,
+        tags: []
+      }
+      console.log(newNote)
+      this.$store.dispatch('addNote', newNote)
       this.value = ''
     },
     itemClickhandler(tag) {

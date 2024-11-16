@@ -2,45 +2,42 @@ import { createStore } from 'vuex'
 
 export const store = createStore({
   state: {
-    user: null,
-    users: [
-      { id: 1, name: 'evgenii', admin: true },
-      { id: 2, name: 'alex', admin: true },
-      { id: 3, name: 'garry', admin: false }
+    notes: [
+      {
+        title: 'Learn Vue 3',
+        tags: ['work']
+      },
+      {
+        title: 'Finish course',
+        tags: ['work', 'home']
+      }
     ]
   },
   actions: {
-    setUser(context) {
-      const fakeUser = {
-        id: 11441,
-        name: 'Nikolay',
-        admin: true
-      }
-      context.commit('setUser', fakeUser)
+    setNotes(context, notes) {
+      context.commit('setNotes', notes)
+    },
+    addNote(context, newNote) {
+      context.commit('addNote', newNote)
+    },
+    deleteNote(context, index) {
+      context.commit('deleteNote', index)
     }
   },
   mutations: {
-    setUser(state, payload) {
-      state.user = payload
-      console.log(state.user)
+    addNote(state, note) {
+      state.notes.push(note)
+    },
+    deleteNote(state, index) {
+      state.notes.splice(index, 1)
+    },
+    setNotes(state, notes) {
+      state.notes = notes
     }
   },
   getters: {
-    isUserLogged(state) {
-      return state.user ? true : false
-    },
-    getUser(state) {
-      return state.user
-    },
-    getUsers(state) {
-      return state.users.filter(user => !user.admin)
-    },
-    getAllUsers(state) {
-      return state.users
-    },
-    getUserbyId: state => id => state.users.find(user => user.id === id),
-    getUsersLength(state, getters) {
-      return `Количество пользователей: ${getters.getAllUsers.length}`
+    getNotes(state) {
+      return state.notes
     }
   }
 })
