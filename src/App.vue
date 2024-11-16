@@ -1,22 +1,26 @@
 <template>
-  <div class="wrapper">
-    <CurrentHeader />
-    <div class="wrapper-content">
-      <div class="container">
-        <router-view />
-      </div>
-    </div>
-    <CurrentFooter />
-  </div>
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
 </template>
 
-<script>
-import CurrentFooter from '@/components/CurrentFooter.vue'
-import CurrentHeader from '@/components/CurrentHeader.vue'
-export default {
-  name: 'App',
-  components: { CurrentHeader, CurrentFooter }
-}
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component'
+import HelloWorld from './components/HelloWorld.vue'
+
+@Options({
+  components: {
+    HelloWorld
+  }
+})
+export default class App extends Vue {}
 </script>
 
-<style lang="scss"></style>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
