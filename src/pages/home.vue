@@ -1,32 +1,66 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <Form />
-  <List :items="getNotesState" />
+  <div style="text-align: center; margin: 2rem 0">
+    <h1 class="title">Star Wars</h1>
+    <p>
+      Type Script, Services, Composition API, Rest API
+      <router-link to="/about" class="link" style="text-decoration: underline"
+        >and more</router-link
+      >
+    </p>
+  </div>
+  <div v-if="loading">
+    <Spinner />
+  </div>
+  <div v-else>
+    <table>
+      <!-- header -->
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Gender</td>
+          <td>Mass</td>
+        </tr>
+      </thead>
+      <!-- body -->
+      <tbody>
+        <tr v-for="(people, index) in peoples.results" :key="index">
+          <td>{{ people.name }}</td>
+          <td>{{ people.gender }}</td>
+          <td>{{ people.mass }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
-<script>
-import Form from '@/components/Notes/Form.vue'
-import List from '@/components/Notes/List.vue'
-export default {
-  name: 'App',
-  components: { Form, List },
-  mounted() {
-    this.getNotes()
-  },
-  methods: {
-    getNotes() {
-      const localNotes = localStorage.getItem('notes')
-      if (localNotes) {
-        this.$store.dispatch('setNotes', JSON.parse(localNotes))
-      }
-    }
-  },
-  computed: {
-    getNotesState() {
-      const state = this.$store.getters.getNotes
-      localStorage.setItem('notes', JSON.stringify(state))
-      return state
+<script lang="ts">
+import Spinner from '@/components/UI/Spinner.vue'
+import DataService from '@/services/DataService'
+import Peoples from '@/types/Peoples'
+import ResponseData from '@/types/ResponseData'
+import { defineComponent, onMounted, ref } from 'vue'
+
+export default defineComponent({
+  components: { Spinner },
+  setup() {
+    const loading = ref(true as boolean)
+    const peoples = ref({} as Peoples)
+
+    onMounted(() => getPeople())
+
+    const getPeople = () =>
+      DataService.getAll()
+        .then((res: ResponseData) => {
+          peoples.value = res.data
+          loading.value = false
+        })
+        .catch((e: Error) => console.log(e))
+
+    return {
+      loading,
+      peoples
     }
   }
-}
+})
 </script>
